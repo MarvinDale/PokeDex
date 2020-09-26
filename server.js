@@ -7,15 +7,18 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 const port = 3000;
 
-let result = "";
-let pokemon = {};
+let pokemon = {
+  name: "???",
+};
 //app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+  // res.sendFile(__dirname + "/public/index.html");
+  res.render("index", { pokemon: pokemon });
 });
 
 app.post("/", function (req, res) {
+  let result = "";
   let id = req.body.Pokemon;
   const url = "https://pokeapi.co/api/v2/pokemon/" + id;
 
@@ -38,7 +41,8 @@ app.post("/", function (req, res) {
       //pokemon = JSON.stringify(pokemon);
 
       console.log(pokemon);
-      res.render("index", { pokemon: pokemon });
+      res.redirect("/");
+
       // res.send("<img src=" + pokemon.sprite + ">");
     });
   });
