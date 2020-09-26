@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <title>PokeDex</title>
+  </head>
+  <body>
+    <h1>PokeDex</h1>
+    <form action="/" method="POST">
+      <label for="pokemonInput">Pokemon: </label>
+      <input id="pokemonInput" type="text" name="Pokemon" />
+      <button type="submit">Go</button>
+
+      <div>
+        <h2>Name: <%= pokemon.name %></h2>
+        <img src="<%= pokemon.sprite %>" alt="Pokemon-Image" />
+      </div>
+
+      <div>
+        <ol>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
+    </form>
+  </body>
+</html>
