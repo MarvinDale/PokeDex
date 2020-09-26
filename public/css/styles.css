@@ -1,4 +1,60 @@
 body {
   background-color: firebrick;
   font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0 20px;
+}
+
+.pokemon {
+  display: relative;
+  right: 20px;
+}
+
+.flex-container {
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+  min-width: 0;
+  justify-content: center;
+}
+
+.right-container,
+.left-container {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.left-container {
+  background-color: antiquewhite;
+  flex: 2;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: ;
+  background-color: burlywood;
+
+  border-style: solid;
+  border-radius: 10px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  padding-left: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }

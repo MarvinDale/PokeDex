@@ -1,7 +1,6 @@
 const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
-const { NONAME } = require("dns");
 
 const app = express();
 const port = 3000;
@@ -42,8 +41,6 @@ app.post("/", function (req, res) {
     //parse after full JSON is recieved
     response.on("end", function (err) {
       let data = JSON.parse(result);
-      let numOfAbilities = data.abilities.length;
-      console.log(numOfAbilities);
 
       pokemon = {
         name: data.name,
@@ -64,3 +61,7 @@ app.post("/", function (req, res) {
 app.listen(port, function (req, res) {
   console.log("Server started on port " + port);
 });
+
+// chain.evolves_to[0].evolves_to[0].species.name;
+// chain.evolves_to[0].species.name;
+// chain.species.name;
