@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
       rel="stylesheet"
     />
     <title>PokeDex</title>
@@ -19,16 +19,25 @@
 
       <div>
         <h2>Name: <%= pokemon.name %></h2>
-        <img src="<%= pokemon.sprite %>" alt="Pokemon-Image" />
+        <img src="<%= pokemon.artwork %>" alt="Pokemon-Image" />
       </div>
 
       <div>
-        <ol>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ol>
+          <h3>Abilities</h3>
+        <ul>
+          <% for(var i=0; i<pokemon.abilities.length; i++){ %>
+            <li><%= pokemon.abilities[i].ability.name %></li>
+         <% } %>
+        </ul>
+      </div>
+
+      <div>
+          <h3>Types</h3>
+        <ul>
+          <% for(var i=0; i<pokemon.types.length; i++){ %>
+            <li><%= pokemon.types[i].type.name %></li>
+         <% } %>
+        </ul>
       </div>
     </form>
   </body>
