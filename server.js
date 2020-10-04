@@ -42,18 +42,8 @@ app.post("/", function (req, res) {
   https.get(url, function (response) {
     console.log(response.statusCode);
 
-    if (response.statusCode === 404) {
-      console.log("404 erroer");
-
-      pokemon = {
-        name: "404 err",
-        abilities: {
-          name: "none",
-        },
-        types: {
-          name: "none",
-        },
-      };
+    if (response.statusCode === 404 || req.body.Pokemon == "") {
+      pokemon = handel404();
       res.redirect("/");
     } else {
       response.on("data", function (chunk) {
@@ -81,3 +71,19 @@ app.post("/", function (req, res) {
 app.listen(port, function (req, res) {
   console.log("Server started on port " + port);
 });
+
+function handel404() {
+  console.log("404 error");
+
+  pokemon = {
+    name: "404 error",
+    abilities: {
+      name: "none",
+    },
+    types: {
+      name: "none",
+    },
+  };
+
+  return pokemon;
+}
