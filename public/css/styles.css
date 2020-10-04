@@ -8,6 +8,15 @@ img {
   display: block; /* remove extra space below image */
 }
 
+h2 {
+  text-align: center;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 .vertical-center {
   min-height: 100%; /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -22,4 +31,11 @@ img {
   border-style: solid;
   border-radius: 10px;
   margin: 10px;
+}
+
+.pokemon-info {
+  text-align: center;
+  list-style: none;
+  font-size: 20px;
+  line-height: 2;
 }

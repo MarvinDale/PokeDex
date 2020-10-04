@@ -8,48 +8,44 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     <link rel="stylesheet" href="css/styles.css" />
-
-    
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-      rel="stylesheet"
-    />
     <title>PokeDex</title>
   </head>
   <body>
     <nav class="navbar navbar-light bg-light">
         <h1 class="navbar-brand">PokeDex</h1>
-         
+
+        <form class="form-inline" action="/" method="POST">
+         <button class="btn btn-outline-dark my-2 my-sm-0" value="random" name="Pokemon" >Random Pokemon</button>
+         </form>
+
           <form class="form-inline" action="/" method="POST">
             <label for="pokemonInput"></label>
             <input class="form-control mr-sm-2" id="pokemonInput" 
                    placeholder="e.g Pikachu" type="text" name="Pokemon"/>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Go</button>
           </form>
       </nav>
   
   
-   <div class="container vertical-center justify-content-center">
+   <div class="container-fluid vertical-center justify-content-center">
      <div class="row">
-      <div class="col-md-auto sub-container">
+      <div class="col-sm sub-container">
         <h2><%= pokemon.name %></h2>
         <img src="<%= pokemon.artwork %>" alt="Pokemon-Image" />
       </div>
 
       <div class="col-sm sub-container">
-          <h3>Abilities</h3>
+          <h2>Abilities</h2>
         <ul>
           <% for(var i=0; i<pokemon.abilities.length; i++){ %>
-            <li><%= pokemon.abilities[i].ability.name %></li>
+            <li class="pokemon-info"><%= pokemon.abilities[i].ability.name %></li>
          <% } %>
         </ul>
       
-
-     
-          <h3>Types</h3>
+          <h2>Types</h2>
         <ul>
           <% for(var i=0; i<pokemon.types.length; i++){ %>
-            <li><%= pokemon.types[i].type.name %></li>
+            <li class="pokemon-info"><%= pokemon.types[i].type.name %></li>
          <% } %>
         </ul>
      </div>

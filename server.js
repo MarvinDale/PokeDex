@@ -11,13 +11,10 @@ app.use(express.static("public"));
 
 let pokemon = {
   name: "???",
-  abilities: {
-    name: "none",
-  },
 
-  types: {
-    name: "none",
-  },
+  abilities: [{ ability: { name: "???" } }],
+
+  types: [{ type: { name: "???" } }],
 };
 
 app.get("/", function (req, res) {
@@ -26,9 +23,19 @@ app.get("/", function (req, res) {
 
 app.post("/", function (req, res) {
   //clear the JSON after each POST request
+  console.log(req.body);
+  let id;
+
+  if (req.body.Pokemon === "random") {
+    console.log("working");
+
+    id = Math.ceil(Math.random() * 893);
+  } else {
+    let str = req.body.Pokemon;
+    id = str.toLowerCase(); //handel inputs with capital letters
+  }
+
   let result = "";
-  let str = req.body.Pokemon;
-  let id = str.toLowerCase(); //handel inputs with capital letters
 
   let url = "https://pokeapi.co/api/v2/pokemon/" + id;
 
@@ -40,7 +47,6 @@ app.post("/", function (req, res) {
 
       pokemon = {
         name: "404 err",
-
         abilities: {
           name: "none",
         },
@@ -48,7 +54,6 @@ app.post("/", function (req, res) {
           name: "none",
         },
       };
-
       res.redirect("/");
     } else {
       response.on("data", function (chunk) {
@@ -63,14 +68,10 @@ app.post("/", function (req, res) {
         pokemon = {
           name: data.name,
           artwork: data.sprites.other["official-artwork"].front_default,
-          //sprite: data.sprites.front_default,
           abilities: data.abilities,
           types: data.types,
         };
 
-        //abilities[0].ability.name
-
-        console.log(pokemon);
         res.redirect("/");
       });
     }
@@ -80,7 +81,3 @@ app.post("/", function (req, res) {
 app.listen(port, function (req, res) {
   console.log("Server started on port " + port);
 });
-
-// chain.evolves_to[0].evolves_to[0].species.name;
-// chain.evolves_to[0].species.name;
-// chain.species.name;
