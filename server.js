@@ -27,34 +27,53 @@ app.get("/", function (req, res) {
 app.post("/", function (req, res) {
   //clear the JSON after each POST request
   let result = "";
-  let id = req.body.Pokemon;
+  let str = req.body.Pokemon;
+  let id = str.toLowerCase(); //handel inputs with capital letters
+
   let url = "https://pokeapi.co/api/v2/pokemon/" + id;
 
   https.get(url, function (response) {
     console.log(response.statusCode);
 
-    response.on("data", function (chunk) {
-      //append chunks of data to result
-      result += chunk;
-    });
-
-    //parse after full JSON is recieved
-    response.on("end", function (err) {
-      let data = JSON.parse(result);
+    if (response.statusCode === 404) {
+      console.log("404 erroer");
 
       pokemon = {
-        name: data.name,
-        artwork: data.sprites.other["official-artwork"].front_default,
-        //sprite: data.sprites.front_default,
-        abilities: data.abilities,
-        types: data.types,
+        name: "404 err",
+
+        abilities: {
+          name: "none",
+        },
+        types: {
+          name: "none",
+        },
       };
 
-      //abilities[0].ability.name
-
-      console.log(pokemon);
       res.redirect("/");
-    });
+    } else {
+      response.on("data", function (chunk) {
+        //append chunks of data to result
+        result += chunk;
+      });
+
+      //parse after full JSON is recieved
+      response.on("end", function (err) {
+        let data = JSON.parse(result);
+
+        pokemon = {
+          name: data.name,
+          artwork: data.sprites.other["official-artwork"].front_default,
+          //sprite: data.sprites.front_default,
+          abilities: data.abilities,
+          types: data.types,
+        };
+
+        //abilities[0].ability.name
+
+        console.log(pokemon);
+        res.redirect("/");
+      });
+    }
   });
 });
 
